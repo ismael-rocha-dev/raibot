@@ -1,7 +1,7 @@
 // enviar as informações sobre os comandos para o discord armazenar.
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const commands = require('../commands/slashCommands');
+const commands = require('../commands/');
 
 const { clientId, token } = process.env;
 

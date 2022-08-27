@@ -1,5 +1,8 @@
 require('dotenv').config();
+
 const { Client, Intents } = require('discord.js');
+
+
 const deployCommands = require('./config/deployCommands');
 const setAllCommands = require('./config/setAllCommands');
 const setAllEvents = require('./events');

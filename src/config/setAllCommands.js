@@ -1,5 +1,5 @@
 const { Collection } = require('discord.js');
-const commands = require('../commands/slashCommands');
+const commands = require('../commands/');
 
 const setAllCommands = (client) => {
 	// pegar os comandos criados na pasta ./commands
