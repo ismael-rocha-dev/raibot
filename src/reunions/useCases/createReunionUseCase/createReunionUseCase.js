@@ -12,7 +12,7 @@ const createReunionUseCase = {
 		}
 
 		const membersInReunion = getMembersInVoiceChannel(voiceChannel);
-		await reunionsRepository.create({ voiceChannelId, membersInReunion });
+		await reunionsRepository.create(voiceChannelId, membersInReunion);
 
 	},
 };

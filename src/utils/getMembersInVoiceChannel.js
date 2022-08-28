@@ -12,7 +12,7 @@ const getMembersInVoiceChannel = (voiceChannel) => {
 	members.each(member => {
 		const { id, username } = member.user;
 
-		const newMember = new Member({ memberId: id, memberName: username });
+		const newMember = new Member(id, username);
 
 		membersArray.push(newMember);
 	});

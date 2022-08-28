@@ -1,14 +1,25 @@
 class Member {
-	constructor({ memberId, memberName }) {
-		this.memberId = memberId;
-		this.memberName = memberName;
+	constructor(memberId = '', memberName = '') {
+		this.id = memberId;
+		this.name = memberName;
 		this.totalMinutes = 0;
 		this.lastTimeEnteredReunion = Date.now();
+		this.isPresent = true;
 	}
-	getMinutesSince(dateInMiliseconds) {
-		const minutes = Math.round((Date.now() - dateInMiliseconds) / 60000);
-		return minutes;
+	updateTotalMinutes() {
+		const minutes = Math.round((Date.now() - this.lastTimeEnteredReunion) / 60000);
+		this.totalMinutes += minutes;
 	}
+	updateLastTimeEnteredReunion() {
+		this.lastTimeEnteredReunion = Date.now();
+	}
+	enterReunion() {
+		this.isPresent = true;
+	}
+	exitReunion() {
+		this.isPresent = false;
+	}
+
 }
 
 module.exports = { Member };

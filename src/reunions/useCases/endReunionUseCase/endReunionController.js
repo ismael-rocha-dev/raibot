@@ -1,6 +1,6 @@
-const { deleteReunionUseCase } = require('./deleteReunionUseCase');
+const { endReunionUseCase } = require('./endReunionUseCase');
 
-const deleteReunionController = {
+const endReunionController = {
 	async handle(interaction) {
 		const user_voice_channel = interaction.member.voice.channel;
 
@@ -9,9 +9,9 @@ const deleteReunionController = {
 		}
 
 		try {
-			await deleteReunionUseCase.execute(user_voice_channel);
+			const reunionText = await endReunionUseCase.execute(user_voice_channel);
 
-			await interaction.reply('Reunião finalizada!');
+			await interaction.reply('Reunião finalizada! \n' + reunionText);
 		}
 		catch (error) {
 			await interaction.reply(error.message);
@@ -19,4 +19,4 @@ const deleteReunionController = {
 	},
 };
 
-module.exports = { deleteReunionController };
+module.exports = { endReunionController };

@@ -1,48 +1,132 @@
 const fs = require('fs/promises');
 const path = require('path');
+const { Member } = require('./models/member.model');
 const { Reunion } = require('./models/reunion.model');
 
-const reunionsFolder = path.join(__dirname, './tmp/');
+const reunionsFolderPath = path.join(__dirname, './tmp/');
 
 const reunionsRepository = {
-	async create({ voiceChannelId, membersInReunion }) {
-		const reunion = new Reunion({ voiceChannelId, membersInReunion });
+	async create(voiceChannelId = '', membersInReunion = [new Member()]) {
+		const reunion = new Reunion(voiceChannelId, membersInReunion);
 		const reunionJSON = JSON.stringify(reunion);
-		const reunionFilePath = reunionsFolder + voiceChannelId + '.json';
+		const reunionFilePath = reunionsFolderPath + voiceChannelId + '.json';
 		await fs.writeFile(reunionFilePath, reunionJSON);
 
 	},
 
-	async delete(voiceChannelId) {
-		const reunionsDir = await fs.readdir(reunionsFolder);
+	async delete(voiceChannelId = '') {
+		const reunionsDir = await fs.readdir(reunionsFolderPath);
 		const reunionFileName = reunionsDir.find(file => file.startsWith(voiceChannelId));
 
 		if (!reunionFileName) {
 			return;
 		}
 
-		await fs.rm(reunionsFolder + reunionFileName);
+		await fs.rm(reunionsFolderPath + reunionFileName);
 	},
 
-	async getReunionById(voiceChannelId) {
-		const reunionsDir = await fs.readdir(reunionsFolder);
+	async getReunionById(voiceChannelId = '') {
+		const reunionsDir = await fs.readdir(reunionsFolderPath);
 		const reunionFileName = reunionsDir.find(file => file.startsWith(voiceChannelId));
 
 		if (!reunionFileName) {
-			return undefined;
+			return null;
 		}
 
-		const reunionFileRawData = await fs.readFile(reunionsFolder + reunionFileName);
-		const reunion = JSON.parse(reunionFileRawData);
+		const reunionFileRawData = await fs.readFile(reunionsFolderPath + reunionFileName);
+		const reunionFileContent = JSON.parse(reunionFileRawData);
+
+		const reunion = new Reunion();
+		Object.assign(reunion, reunionFileContent);
+
 		return reunion;
 	},
 
-	addMemberInReunion({ voiceChannelId, memberId, memberName }) {
-		return;
+	async addMemberInReunion(voiceChannelId = '', memberId = '', memberName = '') {
+		// create member
+		const newMember = new Member(memberId, memberName);
+
+		// get reunion
+		const reunion = await this.getReunionById(voiceChannelId);
+
+		if (!reunion) return;
+
+		// Add member in reunion
+		reunion.members.push(newMember);
+
+		// save reunion file
+		const reunionJSON = JSON.stringify(reunion);
+		await fs.writeFile(reunionsFolderPath + voiceChannelId + '.json', reunionJSON);
+
 	},
 
-	updateUserTimeInReunion({ voiceChannelId, memberId }) {
-		return;
+	async getMemberInReunion(voiceChannelId = '', memberId = '') {
+		const reunion = await this.getReunionById(voiceChannelId);
+
+		const memberAtributesOnly = reunion.members.find(member => member.id = memberId);
+
+		const member = new Member();
+
+		Object.assign(member, memberAtributesOnly);
+
+		return member;
+	},
+
+	async updateMemberTotalMinutes(voiceChannelId = '', memberId = '') {
+		const reunion = await this.getReunionById(voiceChannelId);
+
+		if (!reunion) return;
+
+		const member = await this.getMemberInReunion(voiceChannelId, memberId);
+
+		if (!member) return;
+
+		member.updateTotalMinutes();
+		member.exitReunion();
+
+		reunion.members = reunion.members.map(memberInReunion => {
+			if (memberInReunion.id === member.id) {
+				return member;
+			}
+			return memberInReunion;
+		});
+
+		// save reunion file
+		const reunionJSON = JSON.stringify(reunion);
+		await fs.writeFile(reunionsFolderPath + voiceChannelId + '.json', reunionJSON);
+	},
+
+	async updateMemberLastTimeEnteredReunion(voiceChannelId = '', memberId = '') {
+		const reunion = await this.getReunionById(voiceChannelId);
+
+		if (!reunion) return;
+
+		const member = await this.getMemberInReunion(voiceChannelId, memberId);
+
+		if (!member) return;
+
+		member.enterReunion();
+		member.updateLastTimeEnteredReunion();
+
+		reunion.members = reunion.members.map(memberInReunion => {
+			if (memberInReunion.id === member.id) {
+				return member;
+			}
+			return memberInReunion;
+		});
+
+		// save reunion file
+		const reunionJSON = JSON.stringify(reunion);
+		await fs.writeFile(reunionsFolderPath + voiceChannelId + '.json', reunionJSON);
+	},
+
+	async updateReunionTotalMinutes(voiceChannelId) {
+		const reunion = await this.getReunionById(voiceChannelId);
+		reunion.updateTotalMinutes();
+
+		// save reunion file
+		const reunionJSON = JSON.stringify(reunion);
+		await fs.writeFile(reunionsFolderPath + voiceChannelId + '.json', reunionJSON);
 	},
 };
 

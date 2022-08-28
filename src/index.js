@@ -7,6 +7,7 @@ const deployCommands = require('./config/deployCommands');
 const setAllCommands = require('./config/setAllCommands');
 const setAllEvents = require('./events');
 
+
 // token de acesso ao bot
 const { token } = process.env;
 

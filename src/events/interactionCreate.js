@@ -1,4 +1,6 @@
-const interactionCreate = (client) => client.on('interactionCreate', async interaction => {
+const { Client } = require('discord.js');
+
+const interactionCreate = (client = new Client()) => client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);

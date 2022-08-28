@@ -1,7 +1,7 @@
-const { Collection } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const commands = require('../commands/');
 
-const setAllCommands = (client) => {
+const setAllCommands = (client = new Client()) => {
 	// pegar os comandos criados na pasta ./commands
 	client.commands = new Collection();
 
