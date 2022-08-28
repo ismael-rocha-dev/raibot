@@ -5,16 +5,16 @@ em uma reunião e salva essas informações em uma planilha do Google sheets
 
 ## Iniciar o Bot
 
-Para o programa funcionar corretamente, crie um arquivo .env com as variáveis `token` e `clientId` \
-ex: \
+Para o programa funcionar corretamente, crie um arquivo .env com as variáveis `TOKEN` e `CLIENT_ID`
+ex:
 
 ```
-token="YoUrBoTtoKeN"
-clientId="YoUrBoTcLiEnTiD"
+TOKEN="YoUrBoTtoKeN"
+CLIENT_ID="YoUrBoTcLiEnTiD"
 ```
 
 ## comandos
 
--   `Inicar reunião`: inicia a contagem de tempo que os membros permaneceram na call no canal de voz. Você precisa estar em um canal de voz para usar este comando.
+-   `/iniciar_reuniao`: inicia a contagem de tempo que os membros permaneceram na call no canal de voz. Você precisa estar em um canal de voz para usar este comando.
 
--   `Encerrar reunião`: encerra uma reunião e salva o tempo de cada membro na planilha de horas
+-   `/finalizar_reuniao`: encerra uma reunião e salva o tempo de cada membro na planilha de horas

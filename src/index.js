@@ -4,14 +4,12 @@ require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 const { createTmpFolderIfNotExists } = require('./config/createTmpFolderIfNotExists');
 
-
 const deployCommands = require('./config/deployCommands');
 const setAllCommands = require('./config/setAllCommands');
 const setAllEvents = require('./events');
 
-
 // token de acesso ao bot
-const { token } = process.env;
+const { TOKEN } = process.env;
 
 // Selecionar os Intents (Eventos) que iremos escutar da API do discord
 const { GUILDS, GUILD_VOICE_STATES } = Intents.FLAGS;
@@ -31,4 +29,4 @@ setAllCommands(client);
 // Chamar os event handlers
 setAllEvents(client);
 
-client.login(token);
+client.login(TOKEN);
