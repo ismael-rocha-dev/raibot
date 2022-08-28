@@ -1,6 +1,8 @@
 require('dotenv').config();
 
+
 const { Client, Intents } = require('discord.js');
+const { createTmpFolderIfNotExists } = require('./config/createTmpFolderIfNotExists');
 
 
 const deployCommands = require('./config/deployCommands');
@@ -16,6 +18,9 @@ const { GUILDS, GUILD_VOICE_STATES } = Intents.FLAGS;
 
 // Objeto que representa um cliente do discord (BOT)
 const client = new Client({ intents: [GUILDS, GUILD_VOICE_STATES] });
+
+// create temporary folder to store reunions files
+createTmpFolderIfNotExists();
 
 //  Envia os comandos para a API do BOT
 deployCommands();
