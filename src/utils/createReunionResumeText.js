@@ -8,7 +8,7 @@ const createReunionResumeText = (reunion = new Reunion()) => {
 		`;
 
 	reunion.members.forEach(member => {
-		reunionResumeText += `- ${member.name}: ${member.totalMinutes}m `;
+		reunionResumeText += `- ${member.name}: ${member.totalMinutes}m \n`;
 	});
 
 	return reunionResumeText;
