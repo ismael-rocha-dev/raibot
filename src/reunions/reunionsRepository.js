@@ -63,7 +63,11 @@ const reunionsRepository = {
 	async getMemberInReunion(voiceChannelId = '', memberId = '') {
 		const reunion = await this.getReunionById(voiceChannelId);
 
+		if (!reunion) return;
+
 		const memberAtributesOnly = reunion.members.find(member => member.id = memberId);
+
+		if (!memberAtributesOnly) return;
 
 		const member = new Member();
 

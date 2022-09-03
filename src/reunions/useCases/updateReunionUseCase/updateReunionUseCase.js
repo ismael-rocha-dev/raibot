@@ -5,8 +5,8 @@ const updateReunionUseCase = {
 		// Have in mind that: oldState.channelId !== newState.ChannelId
 
 
+		// member entered a voice channel
 		if (oldState.channelId === null) {
-			// member entered a voice channel
 
 			// verify if there is a reunion in new voice channel
 			const reunion = await reunionsRepository.getReunionById(newState.channelId);
@@ -31,8 +31,8 @@ const updateReunionUseCase = {
 			return;
 		}
 
+		// member left a voice channel
 		if (newState.channelId === null) {
-			// member left a voice channel
 
 			// verify if there is a reunion in this voice channel
 			const reunion = await reunionsRepository.getReunionById(oldState.channelId);
@@ -60,7 +60,11 @@ const updateReunionUseCase = {
 
 			if (!member) {
 				// add member in reunion if not already in
-				await reunionsRepository.addMemberInReunion(newState.channelId, newState.memer.id);
+				await reunionsRepository.addMemberInReunion(
+					newState.channelId,
+					newState.memer.id,
+					newState.member.user.username,
+				);
 				return;
 			}
 
