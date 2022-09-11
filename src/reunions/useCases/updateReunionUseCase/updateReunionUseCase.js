@@ -2,6 +2,7 @@ const { reunionsRepository } = require('../../reunionsRepository');
 
 const updateReunionUseCase = {
 	async execute(oldState, newState) {
+		if (oldState.channelId === newState.channelId) return;
 		// Have in mind that: oldState.channelId !== newState.ChannelId
 
 
