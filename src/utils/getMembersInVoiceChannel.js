@@ -1,6 +1,7 @@
+const { VoiceChannel } = require('discord.js');
 const { Member } = require('../reunions/models/member.model');
 
-const getMembersInVoiceChannel = (voiceChannel) => {
+const getMembersInVoiceChannel = (voiceChannel = new VoiceChannel()) => {
 	if (!voiceChannel) return null;
 
 	const { members } = voiceChannel || null;
@@ -9,7 +10,7 @@ const getMembersInVoiceChannel = (voiceChannel) => {
 
 	const membersArray = [];
 
-	members.each(member => {
+	members.forEach(member => {
 		const { id, username } = member.user;
 
 		const newMember = new Member(id, username);

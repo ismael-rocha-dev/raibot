@@ -65,7 +65,7 @@ const reunionsRepository = {
 
 		if (!reunion) return;
 
-		const memberAtributesOnly = reunion.members.find(member => member.id = memberId);
+		const memberAtributesOnly = reunion.members.find(member => member.id === memberId);
 
 		if (!memberAtributesOnly) return;
 
@@ -88,12 +88,11 @@ const reunionsRepository = {
 		member.updateTotalMinutes();
 		member.exitReunion();
 
-		reunion.members = reunion.members.map(memberInReunion => {
-			if (memberInReunion.id === member.id) {
-				return member;
-			}
-			return memberInReunion;
-		});
+
+		const index = reunion.members.findIndex(memberInReunion => memberInReunion.id === memberId);
+
+		reunion.members[index] = member;
+
 
 		// save reunion file
 		const reunionJSON = JSON.stringify(reunion);
