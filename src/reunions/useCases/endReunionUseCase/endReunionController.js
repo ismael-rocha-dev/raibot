@@ -11,7 +11,7 @@ const endReunionController = {
 		try {
 			const reunionText = await endReunionUseCase.execute(user_voice_channel);
 
-			await interaction.reply('Reunião finalizada! \n' + reunionText);
+			await interaction.reply(reunionText);
 		}
 		catch (error) {
 			await interaction.reply(error.message);

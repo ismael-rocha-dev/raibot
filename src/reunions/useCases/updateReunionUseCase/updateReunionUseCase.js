@@ -22,7 +22,7 @@ const updateReunionUseCase = {
 				await reunionsRepository.addMemberInReunion(
 					newState.channelId,
 					newState.member.id,
-					newState.member.user.username,
+					newState.member.displayName,
 				);
 				return;
 			}
@@ -64,7 +64,7 @@ const updateReunionUseCase = {
 				await reunionsRepository.addMemberInReunion(
 					newState.channelId,
 					newState.memer.id,
-					newState.member.user.username,
+					newState.member.displayName,
 				);
 				return;
 			}

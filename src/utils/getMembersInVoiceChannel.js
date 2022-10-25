@@ -11,9 +11,9 @@ const getMembersInVoiceChannel = (voiceChannel = new VoiceChannel()) => {
 	const membersArray = [];
 
 	members.forEach(member => {
-		const { id, username } = member.user;
+		const { id, displayName } = member;
 
-		const newMember = new Member(id, username);
+		const newMember = new Member(id, displayName);
 
 		membersArray.push(newMember);
 	});
