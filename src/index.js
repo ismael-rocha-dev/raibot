@@ -17,7 +17,7 @@ const { GUILDS, GUILD_VOICE_STATES } = Intents.FLAGS;
 // Objeto que representa um cliente do discord (BOT)
 const client = new Client({ intents: [GUILDS, GUILD_VOICE_STATES] });
 
-// create temporary folder to store reunions files
+// Cria uma pasta para salvar temporariamente as reuniões
 createTmpFolderIfNotExists();
 
 //  Envia os comandos para a API do BOT
@@ -26,7 +26,7 @@ deployCommands();
 // Cria um atributo commands em clients com todos os comandos do BOT
 setAllCommands(client);
 
-// Chamar os event handlers
+// Inicializa todos os eventos
 setAllEvents(client);
 
 client.login(TOKEN);
