@@ -2,7 +2,7 @@ const { getMembersInVoiceChannel } = require('../../../utils/getMembersInVoiceCh
 const { reunionsRepository } = require('../../reunionsRepository');
 
 const createReunionUseCase = {
-	async execute(voiceChannel) {
+	async execute(voiceChannel, reunion_description = '') {
 		const voiceChannelId = voiceChannel.id;
 
 		const reunionAlreadyExists = await reunionsRepository.getReunionById(voiceChannelId);
@@ -12,7 +12,7 @@ const createReunionUseCase = {
 		}
 
 		const membersInReunion = getMembersInVoiceChannel(voiceChannel);
-		await reunionsRepository.create(voiceChannelId, membersInReunion);
+		await reunionsRepository.create(voiceChannelId, membersInReunion, reunion_description);
 
 	},
 };

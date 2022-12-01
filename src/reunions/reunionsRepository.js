@@ -6,8 +6,8 @@ const { Reunion } = require('./models/reunion.model');
 const reunionsFolderPath = path.join(__dirname, './tmp/');
 
 const reunionsRepository = {
-	async create(voiceChannelId = '', membersInReunion = [new Member()]) {
-		const reunion = new Reunion(voiceChannelId, membersInReunion);
+	async create(voiceChannelId = '', membersInReunion = [new Member()], reunion_description = '') {
+		const reunion = new Reunion(voiceChannelId, membersInReunion, reunion_description);
 		const reunionJSON = JSON.stringify(reunion);
 		const reunionFilePath = reunionsFolderPath + voiceChannelId + '.json';
 		await fs.writeFile(reunionFilePath, reunionJSON);

@@ -5,7 +5,9 @@ const createReunionResumeText = (reunion = new Reunion()) => {
 **Reunião finalizada!**
 
 **Resumo da reunião**
-*Tempo de reunião: ${reunion.totalMinutes}m* \n
+*Descrição: ${reunion.description}*
+*Tempo de reunião: ${reunion.totalMinutes}m*
+
 **Membros em reunião:**
 `;
 
