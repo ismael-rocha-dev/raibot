@@ -1,7 +1,8 @@
 class Member {
-	constructor(memberId = '', memberName = '') {
+	constructor(memberId = '', memberName = '', memberRoles = ['']) {
 		this.id = memberId;
 		this.name = memberName;
+		this.roles = memberRoles;
 		this.totalMinutes = 0;
 		this.lastTimeEnteredReunion = Date.now();
 		this.isPresent = true;
@@ -19,7 +20,6 @@ class Member {
 	exitReunion() {
 		this.isPresent = false;
 	}
-
 }
 
 module.exports = { Member };

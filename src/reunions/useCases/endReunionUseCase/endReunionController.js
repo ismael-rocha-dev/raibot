@@ -2,18 +2,11 @@ const { endReunionUseCase } = require('./endReunionUseCase');
 
 const endReunionController = {
 	async handle(interaction) {
-		const user_voice_channel = interaction.member.voice.channel;
-
-		if (!user_voice_channel) {
-			return await interaction.reply('Você precisa estar em um canal de voz para finalizar uma reunião');
-		}
-
 		try {
-			const reunionText = await endReunionUseCase.execute(user_voice_channel);
+			const reunionText = await endReunionUseCase.execute(interaction);
 
 			await interaction.reply(reunionText);
-		}
-		catch (error) {
+		} catch (error) {
 			await interaction.reply(error.message);
 		}
 	},
