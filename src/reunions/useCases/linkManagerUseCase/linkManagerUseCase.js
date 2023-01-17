@@ -2,11 +2,9 @@ const fs = require('fs/promises');
 const path = require("path");
 
 const linkManagerUseCase = {
-	async execute(link_inovacao, link_grp, link_midias) {
+	async execute(link_raitec) {
     
-    const INOVACAO_NAME = "Inovação";
-    const GRP_NAME = "Administração";
-    const MIDIAS_NAME = "Mídias";
+    const RAITEC_NAME = "RAITec";
 
     const filePath = path.resolve(__dirname, "setoresRaitec\spreadsheets_ids.json");
 	
@@ -14,10 +12,8 @@ const linkManagerUseCase = {
 
     const fileObject = JSON.parse(file);
 
-    fileObject[INOVACAO_NAME] = link_inovacao;
-    fileObject[GRP_NAME] = link_grp;
-    fileObject[MIDIAS_NAME] = link_midias;
-
+    fileObject[RAITEC_NAME] = link_raitec;
+    
     const fileJson = JSON.stringify(fileObject);
 
     await fs.writeFile(filePath, fileJson);

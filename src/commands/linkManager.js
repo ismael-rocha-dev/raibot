@@ -3,11 +3,9 @@ const { linkManagerController } = require('../reunions/useCases/linkManagerUseCa
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('Link das planilhas')
+		.setName('link_da_planilha')
 		.setDescription('Atribui os links das planilhas do RAITec')
-		.addStringOption(option => option.setName('Inovacao').setDescription('Link da planilha da Inovação'))
-        .addStringOption(option => option.setName('GRP').setDescription('Link da planilha da GRP'))
-        .addStringOption(option => option.setName('Midias').setDescription('Link da planilha de Mídias')),
+		.addStringOption(option => option.setName('RAITec').setDescription('Link da planilha do RAITec')),
 	async execute(interaction) {
 		await createReunionController.handle(interaction);
 	},
