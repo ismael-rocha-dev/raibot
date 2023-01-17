@@ -18,7 +18,7 @@ exemplo do conteúdo do arquivo `.env`:
 TOKEN="YoUrBoTtoKeN"
 CLIENT_ID="YoUrBoTcLiEnTiD"
 ```
-Antes de iniciar o programa, algumas bibliotecas usadas no código precisam de instalação, para isso, basta executar o comando `npm install package.json`.
+Antes de iniciar o programa, algumas bibliotecas usadas no código precisam de instalação, para isso, basta executar o comando `npm install`.
 
 Agora é só rodar o comando `npm run dev` e o bot ira iniciar. Se você adicionou o BOT a algum servidor, ele aparecerá ativo no servidor e você poderar acessar os comandos por qualquer canal de texto do servidor.
 
