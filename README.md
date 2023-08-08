@@ -33,3 +33,9 @@ Agora é só rodar o comando `npm run dev` e o bot ira iniciar. Se você adicion
 -   `/finalizar_reuniao`: encerra uma reunião e salva o tempo de cada membro na planilha de horas
 
 -   `/link_da_planilha`: permite que o usuário informe o link da planilha que será usada no semestre.
+
+## Functionamento
+
+O algoritmo de contagem de horas e gerenciamento de participantes pode ser compreendido com esse estudo de caso:
+
+![image](https://github.com/ismaellimarocha23/raibot/assets/39030764/092a8cfd-5f48-43a7-b078-bf9a0502275b)
