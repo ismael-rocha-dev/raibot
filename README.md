@@ -34,7 +34,7 @@ Agora é só rodar o comando `npm run dev` e o bot ira iniciar. Se você adicion
 
 -   `/link_da_planilha`: permite que o usuário informe o link da planilha que será usada no semestre.
 
-## Functionamento
+## Funcionamento
 
 O algoritmo de contagem de horas e gerenciamento de participantes pode ser compreendido com esse estudo de caso:
 
