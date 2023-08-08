@@ -2,8 +2,7 @@
 
 # <img src="https://github.com/ismaellimarocha23/raibot/assets/39030764/389a6690-1c26-4483-97b9-aefa56a41943" width="30"> RAIBOT
 
-RAIBOT é um bot par!
-a discord que automatiza e facilita o trabalho dos membros do RAITec. Sua principal funcionalidade é monitorar o tempo de cada membro em uma reunião feita em uma call do discord. Atualmente esses dados são salvos em uma planilha do Google Sheets utilizando um outro serviço que criamos, mas posteriormente a ideia é que esses dados fiquem salvos em um banco de dados do RAITec.
+O RAIBOT é um bot para discord que automatiza e facilita o trabalho dos membros do RAITec. Sua principal funcionalidade é monitorar o tempo de cada membro em uma reunião feita em uma call do discord. Atualmente esses dados são salvos em uma planilha do Google Sheets utilizando um outro serviço que criamos, mas posteriormente a ideia é que esses dados fiquem salvos em um banco de dados do RAITec.
 
 ## Iniciar o Bot
 ### Criar aplicação de BOT
